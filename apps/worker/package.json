@@ -1,0 +1,20 @@
+{
+  "name": "worker",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^7"
+  },
+  "dependencies": {
+    "@repo/db": "*",
+    "@repo/kafka": "*",
+    "@solana/web3.js": "^1.99.0",
+    "bs58": "^6.0.0",
+    "dotenv": "^17.4.2",
+    "nodemailer": "^10.0.10"
+  }
+}

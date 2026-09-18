@@ -1,0 +1,27 @@
+FROM oven/bun:1-alpine
+
+WORKDIR /app
+
+RUN apk add --no-cache openssl
+
+#Copying workspace files (Good for Docker Layer Caching)
+COPY ./package.json ./package.json
+COPY ./bun.lock ./bun.lock
+COPY ./turbo.json ./turbo.json
+
+# Copying only necessary packages
+COPY ./packages/db ./packages/db
+COPY ./packages/types ./packages/types
+
+#Copying only the primary-backend app
+COPY ./apps/primary_backend ./apps/primary_backend
+
+RUN bun install --prod
+
+RUN bun run db:generate
+
+RUN bun run db:migrate
+
+EXPOSE 3000
+
+CMD ["bun", "run", "start:backend"]

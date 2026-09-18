@@ -1,0 +1,51 @@
+services:
+
+  kafka:
+    image: apache/kafka:latest
+    ports:
+      - "9092:9092"
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+  
+  primary_backend:
+    image: zap/primary_backend:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+  
+  processor:
+    image: zap/processor:latest
+    ports:
+      - "3002:3002"
+    depends_on:
+      kafka:
+        condition: service_started
+      primary_backend:
+        condition: service_started
+  
+  worker:
+    image: zap/worker:latest
+    depends_on:
+      kafka:
+        condition: service_started
+      primary_backend:
+        condition: service_started
+  
+  web:
+    image: 
+  
+
+volumes:
+  postgres_data:

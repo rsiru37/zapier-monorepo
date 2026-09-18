@@ -2,7 +2,7 @@
   "name": "@repo/ui",
   "version": "0.0.0",
   "private": true,
-  "exports": {
+    "exports": {
     "./*": "./src/*.tsx"
   },
   "scripts": {
