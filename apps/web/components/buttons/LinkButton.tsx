@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-export const LinkButton = ({ children, onClick }: { children: ReactNode; onClick: () => void }) => {
+export const LinkButton = ({ children, onClick }: { children: ReactNode; onClick: () => void }):React.ReactElement => {
     return (
         <div className="px-2 py-4 cursor-pointer hover:bg-gray-100" onClick={onClick}>
             {children}

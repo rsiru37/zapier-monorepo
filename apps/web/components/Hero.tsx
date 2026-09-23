@@ -3,7 +3,7 @@ import { PrimaryButton } from "./buttons/PrimaryButton"
 import { useRouter } from "next/navigation";
 import { SecondaryButton } from "./buttons/SecondaryButton";
 
-function Hero() {
+function Hero():React.ReactElement {
     const router = useRouter();
     return (<div>
         <div className="flex flex-col items-center justify-center pt-8">

@@ -6,7 +6,7 @@ export const ZapCell = ({
     name?: string; 
     index: number;
     onClick: () => void;
-}) => {
+}):React.ReactElement => {
     return <div onClick={onClick} className="border border-black py-8 px-8 flex w-[300px] justify-center cursor-pointer">
         <div className="flex text-xl">
             <div className="font-bold">

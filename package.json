@@ -9,8 +9,8 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
-    "db:generate":"cd packages/db && bunx prisma generate && cd ../..",
-    "db:migrate":"cd packages/db && bunx prisma migrate deploy && cd ../.."
+    "db:generate":"cd packages/db && bun prisma generate && cd ../..",
+    "db:migrate":"cd packages/db && bun prisma migrate deploy && cd ../.."
   },
   "devDependencies": {
     "prettier": "3.9.6",

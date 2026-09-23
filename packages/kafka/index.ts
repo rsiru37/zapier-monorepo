@@ -2,7 +2,8 @@ import { Kafka } from "kafkajs";
 
 const kafka = new Kafka({
     clientId: "zapier",
-    brokers: ["localhost:9092"]
+    brokers: ["kafka:9092"]
 })
+//console.log("URL", process.env.KAFKA_URL);
 
 export { kafka };

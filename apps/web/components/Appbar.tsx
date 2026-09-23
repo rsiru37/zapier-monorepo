@@ -3,7 +3,7 @@ import { LinkButton } from "./buttons/LinkButton"
 import { useRouter } from "next/navigation"
 import { PrimaryButton } from "./buttons/PrimaryButton";
 
-export const Appbar = () => {
+export const Appbar = ():React.ReactElement=> {
     const router = useRouter();
     return(
     <div className="flex border-b justify-between">

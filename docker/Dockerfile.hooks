@@ -17,6 +17,8 @@ COPY ./apps/hooks ./apps/hooks
 
 RUN bun install --prod
 
+RUN bun run db:generate
+
 EXPOSE 3002
 
 CMD ["bun", "run", "./apps/hooks/index.ts"]

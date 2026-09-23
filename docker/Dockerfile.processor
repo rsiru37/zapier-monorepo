@@ -17,4 +17,6 @@ COPY ./apps/processor ./apps/processor
 
 RUN bun install --prod
 
-CMD ["bun", "run", "./apps/hooks/index.ts"]
+RUN bun run db:generate
+
+CMD ["bun", "run", "./apps/processor/index.ts"]

@@ -13,13 +13,8 @@ COPY ./turbo.json ./turbo.json
 COPY ./packages/db ./packages/db
 COPY ./packages/types ./packages/types
 
-#Copying only the primary-backend app
-COPY ./apps/primary_backend ./apps/primary_backend
-
 RUN bun install --prod
 
 RUN bun run db:generate
 
-EXPOSE 3000
-
-CMD ["sh", "-c", "bun run start:backend"]
+CMD [ "sh", "-c", "bun run db:migrate" ]

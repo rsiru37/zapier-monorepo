@@ -1,6 +1,6 @@
 "use client"
 
-export const Card = () => {
+export const Card = ():React.ReactElement => {
     return(
         <div className="max-w-sm rounded-xl overflow-hidden shadow-lg bg-white border border-gray-200">
       {/* Card Image */}

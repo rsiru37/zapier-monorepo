@@ -5,7 +5,7 @@ import { useState } from "react";
 import axios from 'axios';
 import { useRouter } from "next/navigation";
 
-export default function SignupPage(){
+export default function SignupPage():React.ReactElement{
     const router = useRouter();
     const [name,setName] = useState("");
     const [email,setEmail] = useState("");

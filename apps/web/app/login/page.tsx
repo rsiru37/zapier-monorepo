@@ -6,7 +6,7 @@ import axios from "axios";
 import { env } from "process";
 import { useRouter } from "next/navigation";
 
-export default function LoginPage(){
+export default function LoginPage(): React.ReactElement {
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const router = useRouter();

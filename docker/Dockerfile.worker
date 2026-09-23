@@ -17,4 +17,6 @@ COPY ./apps/worker ./apps/worker
 
 RUN bun install --prod
 
+RUN bun run db:generate
+
 CMD ["bun", "run", "./apps/worker/index.ts"]

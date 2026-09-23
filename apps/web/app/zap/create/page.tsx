@@ -27,7 +27,7 @@ function useAvailableActionsAndTriggers() {
 }
 
 
-export default function CreateZap() {
+export default function CreateZap():React.ReactElement {
     const router = useRouter();
     const [selectedTrigger, setSelectedTrigger] = useState<{id:string; trigger_name:string}>();
     const [selectedActions, setSelectedActions] = useState<{

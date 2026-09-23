@@ -5,7 +5,7 @@ export const Input = ({label, placeholder, onChange, type = "text"}: {
     placeholder: string;
     onChange: (e: any) => void;
     type?: "text" | "password"
-}) => {
+}):React.ReactElement => {
     return <div className="flex flex-col w-80">
         <div className="text-sm pb-1 pt-2">
              <label>{label}</label>
