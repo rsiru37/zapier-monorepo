@@ -19,6 +19,7 @@ COPY ./packages/typescript-config ./packages/typescript-config
 COPY ./apps/web ./apps/web
 
 RUN bun install
+RUN bun add -d @types/react @types/node
 RUN cd apps/web && bun run build
 
 CMD ["bun", "run", "start:frontend"]
