@@ -44,5 +44,5 @@ jobs:
           script: |
             cd zapier-monorepo         
             docker compose pull cryptingle/zap-hooks
-            docker compose up -d --no-deps hooks
+            docker compose up -d --no-deps --force-recreate hooks
             docker compose ps hooks
