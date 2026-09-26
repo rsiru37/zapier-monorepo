@@ -10,7 +10,7 @@ export default function Home():React.ReactElement {
         <Hero/>
         <div className="pt-4">
         <HeroVideo/>
-        <b>Hi Raj Hello Again</b>
+        <b>Hi Raj Hello Again I expect to see these changes on the production web</b>
         </div>
       </main>
   );
