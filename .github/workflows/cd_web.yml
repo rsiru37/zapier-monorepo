@@ -42,7 +42,8 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
           script: |
-            cd zapier-monorepo         
+            cd zapier-monorepo
+            git pull         
             docker compose pull cryptingle/zap-web
             docker compose up -d --no-deps --force-recreate web
             docker compose ps web
