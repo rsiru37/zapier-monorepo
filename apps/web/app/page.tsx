@@ -10,7 +10,7 @@ export default function Home():React.ReactElement {
         <Hero/>
         <div className="pt-4">
         <HeroVideo/>
-        <b>Hi Raj</b>
+        <b>Hi Raj Hello Again</b>
         </div>
       </main>
   );
