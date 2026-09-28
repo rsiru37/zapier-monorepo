@@ -44,6 +44,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql
+    restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -59,6 +60,7 @@ services:
     ports:
       - "5555:5555"
     command: bun run db:studio
+    restart: unless-stopped
     depends_on:
       postgres:
         condition: service_healthy
@@ -80,6 +82,7 @@ services:
       dockerfile: ./docker/Dockerfile.primary_backend
     ports:
       - "3000:3000"
+    restart: unless-stopped
     depends_on:
       db-migrate:
         condition: service_completed_successfully
@@ -90,6 +93,7 @@ services:
       dockerfile: ./docker/Dockerfile.hooks
     ports:
       - "3002:3002"
+    restart: unless-stopped
     depends_on:
       db-migrate:
         condition: service_completed_successfully
@@ -98,6 +102,7 @@ services:
     build: 
       context: .
       dockerfile: ./docker/Dockerfile.processor
+    restart: unless-stopped
     depends_on:
       db-migrate:
         condition: service_completed_successfully
@@ -108,6 +113,7 @@ services:
     build: 
       context: .
       dockerfile: ./docker/Dockerfile.worker
+    restart: unless-stopped
     depends_on:
       db-migrate:
         condition: service_completed_successfully
@@ -118,6 +124,7 @@ services:
     build: 
       context: .
       dockerfile: ./docker/Dockerfile.web
+    restart: unless-stopped
     ports:
       - "3001:3001"
     depends_on:

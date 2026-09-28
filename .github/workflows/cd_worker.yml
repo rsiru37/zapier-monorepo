@@ -43,6 +43,6 @@ jobs:
           key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
           script: |
             cd zapier-monorepo         
-            docker compose pull cryptingle/zap-worker
-            docker compose up -d --no-deps --force-recreate worker
+            docker pull cryptingle/zap-worker:latest
+            docker compose -f 'docker_compose_prod.yml' up -d --no-deps --force-recreate worker
             docker compose ps worker

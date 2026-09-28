@@ -16,6 +16,7 @@ services:
         KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
         KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
         KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+    restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:9092 || exit 1"]
       interval: 10s
@@ -44,6 +45,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql
+    restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -57,6 +59,7 @@ services:
     ports:
       - "5555:5555"
     command: bun run db:studio
+    restart: unless-stopped
     depends_on:
       postgres:
         condition: service_healthy
@@ -73,6 +76,8 @@ services:
     image: cryptingle/zap_primary_backend:latest
     ports:
       - "3000:3000"
+    restart: unless-stopped
+    pull_policy: always
     depends_on:
       db-migrate:
         condition: service_completed_successfully
@@ -81,12 +86,16 @@ services:
     image: cryptingle/zap-hooks:latest
     ports:
       - "3002:3002"
+    restart: unless-stopped
+    pull_policy: always
     depends_on:
       db-migrate:
         condition: service_completed_successfully
 
   processor:
     image: cryptingle/zap-processor:latest
+    restart: unless-stopped
+    pull_policy: always
     depends_on:
       db-migrate:
         condition: service_completed_successfully
@@ -95,6 +104,8 @@ services:
   
   worker:
     image: cryptingle/zap-worker:latest
+    restart: unless-stopped
+    pull_policy: always
     depends_on:
       db-migrate:
         condition: service_completed_successfully
@@ -103,6 +114,8 @@ services:
   
   web:
     image: cryptingle/zap-web:latest
+    restart: unless-stopped
+    pull_policy: always
     ports:
       - "3001:3001"
     depends_on:
