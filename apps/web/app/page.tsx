@@ -10,7 +10,7 @@ export default function Home():React.ReactElement {
         <Hero/>
         <div className="pt-4">
         <HeroVideo/>
-        <b>Now I expect to see Siruvani on the Web2</b>
+        <b>Now I expect to see Siruvani on the Web3</b>
         </div>
       </main>
   );
