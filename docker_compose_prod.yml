@@ -51,9 +51,7 @@ services:
       retries: 5
   
   prisma-studio:
-    build:
-      context: .
-      dockerfile: ./docker/Dockerfile.migrations
+    image: cryptingle/zap-migrations:latest
     environment:
       DATABASE_URL: postgresql://postgres:password@postgres:5432/postgres
     ports:
@@ -64,20 +62,15 @@ services:
         condition: service_healthy
   
   db-migrate:
+    image: cryptingle/zap-migrations:latest
     environment:
       - DATABASE_URL=postgresql://postgres:password@postgres:5432/postgres
-    build:
-      context: .
-      dockerfile: ./docker/Dockerfile.migrations
-    # command: sh -c "bun run db:migrate"
     depends_on:
       postgres:
         condition: service_healthy
 
   primary_backend:
-    build:
-      context: .
-      dockerfile: ./docker/Dockerfile.primary_backend
+    image: cryptingle/zap_primary_backend:latest
     ports:
       - "3000:3000"
     depends_on:
@@ -85,9 +78,7 @@ services:
         condition: service_completed_successfully
 
   hooks:
-    build:
-      context: .
-      dockerfile: ./docker/Dockerfile.hooks
+    image: cryptingle/zap-hooks:latest
     ports:
       - "3002:3002"
     depends_on:
@@ -95,9 +86,7 @@ services:
         condition: service_completed_successfully
 
   processor:
-    build: 
-      context: .
-      dockerfile: ./docker/Dockerfile.processor
+    image: cryptingle/zap-processor:latest
     depends_on:
       db-migrate:
         condition: service_completed_successfully
@@ -105,9 +94,7 @@ services:
         condition: service_healthy
   
   worker:
-    build: 
-      context: .
-      dockerfile: ./docker/Dockerfile.worker
+    image: cryptingle/zap-worker:latest
     depends_on:
       db-migrate:
         condition: service_completed_successfully
@@ -115,9 +102,7 @@ services:
         condition: service_healthy
   
   web:
-    build: 
-      context: .
-      dockerfile: ./docker/Dockerfile.web
+    image: cryptingle/zap-web:latest
     ports:
       - "3001:3001"
     depends_on:
